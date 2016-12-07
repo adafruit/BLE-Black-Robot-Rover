@@ -5,7 +5,7 @@ Adafruit invests time and resources providing this open source design, please su
 Written by Tyler Cooper for Adafruit Industries.
 BSD license, check license.txt for more information
 
-To download. click the DOWNLOADS button in the top right corner, rename the uncompressed folder Flora_NeoGeo_Watch. Check that the Flora_NeoGeo_Watch folder contains Flora_NeoGeo_Watch.ino.
+To download. click the DOWNLOADS button in the top right corner, rename the uncompressed folder BLE-Black-Robot-Rover. Check that the BLE-Black-Robot-Rover folder contains BLE-Black-Robot-Rover.ino.
 
 This code example requires the Adafruit BLE library which can be downloaded from https://github.com/adafruit/Adafruit_BluefruitLE_nRF51
 
