@@ -60,6 +60,12 @@ extern uint8_t packetbuffer[];
 
 char buf[60];
 
+// Set your forward, reverse, and turning speeds
+#define ForwardSpeed                255
+#define ReverseSpeed                255
+#define TurningSpeed                100
+
+
 /**************************************************************************/
 /*!
     @brief  Sets up the HW an the BLE module (this function is called
@@ -85,10 +91,6 @@ void setup(void)
 
   /* Initialize the module */
   BLEsetup();
-
-  //Set your motor speed (255 Max)
-  L_MOTOR->setSpeed(155); 
-  R_MOTOR->setSpeed(155);
 }
 
 void loop(void)
@@ -100,8 +102,11 @@ void loop(void)
     
 }
 
+bool isMoving = false;
+unsigned long lastPress = 0;
 
 bool readController(){
+  uint8_t maxspeed;
 
  // Buttons
   if (packetbuffer[1] == 'B') {
@@ -127,26 +132,49 @@ bool readController(){
       }
 
       if(buttnum == 5){
+        isMoving = true;
         L_MOTOR->run(FORWARD);
         R_MOTOR->run(FORWARD);
+        maxspeed = ForwardSpeed;
       }
       
       if(buttnum == 6){
+        isMoving = true;
         L_MOTOR->run(BACKWARD);
-        R_MOTOR->run(BACKWARD);        
+        R_MOTOR->run(BACKWARD);
+        maxspeed = ReverseSpeed;        
       }
       
       if(buttnum == 7){
+        isMoving = true;
         L_MOTOR->run(RELEASE);
         R_MOTOR->run(FORWARD);
+        maxspeed = TurningSpeed;
       }
       
       if(buttnum == 8){
+        isMoving = true;
         L_MOTOR->run(FORWARD);
-        R_MOTOR->run(RELEASE);        
-      }     
-  }
-  else {
+        R_MOTOR->run(RELEASE);
+        maxspeed = TurningSpeed;        
+      }
+
+      lastPress = millis();
+
+      // speed up the motors
+      for (int speed=0; speed < maxspeed; speed+=5) {
+        L_MOTOR->setSpeed(speed);
+        R_MOTOR->setSpeed(speed);
+        delay(5); // 250ms total to speed up
+      }
+  } else {
+      isMoving = false;
+      // slow down the motors
+      for (int speed = maxspeed; speed >= 0; speed-=5) {
+        L_MOTOR->setSpeed(speed);
+        R_MOTOR->setSpeed(speed);
+        delay(5); // 50ms total to slow down
+      }
       L_MOTOR->run(RELEASE);
       R_MOTOR->run(RELEASE);
     }
