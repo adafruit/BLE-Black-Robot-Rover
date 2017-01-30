@@ -14,20 +14,12 @@
  any redistribution
 *********************************************************************/
 
-#include <string.h>
 #include <Arduino.h>
-#include <SPI.h>
-#if not defined (_VARIANT_ARDUINO_DUE_X_)
-  #include <SoftwareSerial.h>
-#endif
-
-#include "Adafruit_BLE.h"
-#include "Adafruit_BluefruitLE_SPI.h"
-#include "Adafruit_BluefruitLE_UART.h"
+#include <Adafruit_BLE.h>
+#include <Adafruit_BluefruitLE_SPI.h>
 
 #include "BluefruitConfig.h"
 
-#include <Wire.h>
 #include <Adafruit_MotorShield.h>
 
 // Create the motor shield object with the default I2C address
@@ -68,7 +60,7 @@ char buf[60];
 
 /**************************************************************************/
 /*!
-    @brief  Sets up the HW an the BLE module (this function is called
+    @brief  Sets up the HW and the BLE module (this function is called
             automatically on startup)
 */
 /**************************************************************************/
