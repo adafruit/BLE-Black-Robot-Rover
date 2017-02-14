@@ -1,4 +1,4 @@
-For more details on the AdaBox002 Rover project, please visit http://learn.adafruit.com/adabox-002/.
+For more details on the AdaBox002 Rover project, please visit http://learn.adafruit.com/adabox002/.
 
 Adafruit invests time and resources providing this open source design, please support Adafruit and open-source hardware by purchasing products from Adafruit!
 
